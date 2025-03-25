@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Tab Maker</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>🎸 Guitar Tab Maker</h1>
+        <p>Create, edit, and format your guitar tabs easily.</p>
+
+        <!-- Tab Input Section -->
         <textarea id="tabInput" placeholder="Type your tab here..."></textarea>
-        <br>
         <button onclick="displayTab()">Display Tab</button>
         <button onclick="downloadTab()">Download Tab</button>
-        <h2>Output:</h2>
-        <pre id="tabOutput"></pre>
+
+        <!-- Live Preview -->
+        <h2>Live Preview:</h2>
+        <pre id="tabPreview"></pre>
+
+        <!-- Chord Snippets -->
+        <h3>Quick Chords:</h3>
+        <div class="chord-buttons">
+            <button onclick="insertChord('e|--3--|\\nB|--3--|\\nG|--0--|\\nD|--0--|\\nA|--2--|\\nE|--3--|\\n')">G</button>
+            <button onclick="insertChord('e|--2--|\\nB|--3--|\\nG|--2--|\\nD|--0--|\\nA|-----|\\nE|-----|\\n')">D</button>
+            <button onclick="insertChord('e|--0--|\\nB|--1--|\\nG|--0--|\\nD|--2--|\\nA|--3--|\\nE|-----|\\n')">C</button>
+        </div>
+
+        <!-- Validation Alert -->
+        <p id="validationMessage"></p>
     </div>
 
     <script src="script.js"></script>
