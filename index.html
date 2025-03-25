@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guitar Tab Maker</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="container">
-        <h1>Guitar Tab Maker</h1>
-        <textarea id="tabInput" placeholder="Enter your guitar tabs here..."></textarea>
-        <button onclick="updatePreview()">Preview Tab</button>
+        <h1>🎸 Guitar Tab Maker</h1>
+        <textarea id="tabInput" placeholder="Type your tab here..."></textarea>
+        <br>
+        <button onclick="displayTab()">Display Tab</button>
         <button onclick="downloadTab()">Download Tab</button>
-        <h2>Tab Preview:</h2>
-        <pre id="tabPreview"></pre>
+        <h2>Output:</h2>
+        <pre id="tabOutput"></pre>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+
