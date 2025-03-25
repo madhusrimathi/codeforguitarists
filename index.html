@@ -9,14 +9,12 @@
 <body>
     <div class="container">
         <h1>Guitar Tab Maker</h1>
-        <p>Enter your guitar tab (6 lines representing strings, and numbers for frets):</p>
-        <textarea id="tabInput" placeholder="Enter guitar tabs here..."></textarea>
-        <button onclick="previewTab()">Preview Tab</button>
-        
-        <h2>Preview:</h2>
+        <textarea id="tabInput" placeholder="Enter your guitar tabs here..."></textarea>
+        <button onclick="updatePreview()">Preview Tab</button>
+        <button onclick="downloadTab()">Download Tab</button>
+        <h2>Tab Preview:</h2>
         <pre id="tabPreview"></pre>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
