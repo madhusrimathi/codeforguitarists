@@ -1,17 +1,21 @@
 function previewTab() {
-  const input = document.getElementById("tabInput").value;
-  const preview = document.getElementById("tabPreview");
-  
-  // Ensure 6 lines for the 6 guitar strings
-  const lines = input.split("\n");
+    const input = document.getElementById("tabInput").value;
+    const preview = document.getElementById("tabPreview");
+    
+    // Split input by lines
+    const lines = input.split("\n");
 
-  // Fill up missing lines if less than 6
-  while (lines.length < 6) {
-    lines.push("");  // Empty string for missing lines
-  }
+    // Create an array for the guitar strings (6 strings in total)
+    let tab = ['', '', '', '', '', ''];
 
-  // Create an array for guitar strings and add the lines (from lowest string to highest)
-  let formattedTab = lines.reverse().join("\n");
-  
-  preview.textContent = formattedTab;
+    // Fill the array with each line of input corresponding to a string
+    for (let i = 0; i < lines.length; i++) {
+        tab[5 - i] = lines[i].trim();  // Reverse the order, as the top line is for the high E string
+    }
+
+    // Format the tab to display as 6 lines
+    let formattedTab = tab.join("\n");
+
+    // Display the tab
+    preview.textContent = formattedTab;
 }
