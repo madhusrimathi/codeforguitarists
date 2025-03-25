@@ -1,5 +1,9 @@
-function previewTab() {
-  const input = document.getElementById("tabInput").value;
-  const preview = document.getElementById("tabPreview");
-  preview.textContent = input;
+pre {
+    font-family: monospace;
+    background: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
