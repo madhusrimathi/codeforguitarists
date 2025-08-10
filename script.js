@@ -1,70 +1,96 @@
 // script.js
 
-// References to DOM elements
-const noteInput = document.getElementById('noteInput');
-const stringSelect = document.getElementById('stringSelect');
-const fretInput = document.getElementById('fretInput');
-const addNoteBtn = document.getElementById('addNote');
-const tabDisplay = document.getElementById('tabDisplay');
-const playBtn = document.getElementById('playTab');
-const clearBtn = document.getElementById('clearTab');
+// Constants
+const strings = ["E", "A", "D", "G", "B", "e"];
+const positions = 16; // number of time positions/beats
 
-// Data model: each string will hold an array of frets
-let tabData = {
-    E: [],
-    B: [],
-    G: [],
-    D: [],
-    A: [],
-    e: []
-};
+// Elements
+const tabGridBody = document.querySelector("#tabGrid tbody");
+const techIcons = document.querySelectorAll(".tech-icon");
 
-// Add note
-addNoteBtn.addEventListener('click', () => {
-    const string = stringSelect.value;
-    const fret = fretInput.value.trim();
+let selectedTechnique = null;
 
-    if (string && fret !== '') {
-        tabData[string].push(fret);
-        fretInput.value = '';
-        updateTabDisplay();
-    } else {
-        alert("Please select a string and enter a fret number!");
+// Initialize tab grid rows with empty cells
+function createTabGrid() {
+  tabGridBody.innerHTML = "";
+  strings.forEach((string) => {
+    const tr = document.createElement("tr");
+    tr.setAttribute("data-string", string);
+
+    // String name cell
+    const th = document.createElement("th");
+    th.textContent = string;
+    tr.appendChild(th);
+
+    // Add empty cells for each position
+    for (let i = 1; i <= positions; i++) {
+      const td = document.createElement("td");
+      td.setAttribute("data-pos", i);
+      td.setAttribute("contenteditable", "true");
+      td.setAttribute("aria-label", `${string} string, position ${i}`);
+      td.spellcheck = false;
+      tr.appendChild(td);
     }
-});
 
-// Update tab display
-function updateTabDisplay() {
-    let displayHTML = '';
-    for (let stringName of Object.keys(tabData)) {
-        displayHTML += `<div class="tab-line">${stringName} | ${tabData[stringName].join('—')}</div>`;
-    }
-    tabDisplay.innerHTML = displayHTML;
+    tabGridBody.appendChild(tr);
+  });
 }
 
-// Play tab (simulation)
-playBtn.addEventListener('click', () => {
-    let sequence = [];
-    let maxLength = Math.max(...Object.values(tabData).map(arr => arr.length));
+// Clear any invalid inputs (only allow fret numbers or empty)
+function sanitizeCellInput(cell) {
+  const val = cell.textContent.trim();
+  if (val === "") return;
+  if (!/^\d+$/.test(val)) {
+    cell.textContent = "";
+  } else {
+    // Limit fret number to 0–24
+    const fret = parseInt(val, 10);
+    if (fret < 0 || fret > 24) {
+      cell.textContent = "";
+    } else {
+      cell.textContent = fret.toString();
+    }
+  }
+}
 
-    for (let i = 0; i < maxLength; i++) {
-        let notesAtBeat = [];
-        for (let stringName of Object.keys(tabData)) {
-            notesAtBeat.push(tabData[stringName][i] || '-');
+// Handle cell input sanitization on blur
+function setupCellListeners() {
+  tabGridBody.querySelectorAll("td").forEach((cell) => {
+    cell.addEventListener("blur", () => {
+      sanitizeCellInput(cell);
+    });
+
+    // Apply technique icon on click if selected
+    cell.addEventListener("click", () => {
+      if (selectedTechnique) {
+        // Toggle technique on cell
+        if (cell.classList.contains(`tech-${selectedTechnique}`)) {
+          cell.classList.remove(`tech-${selectedTechnique}`, "tech-applied");
+          cell.removeAttribute("title");
+        } else {
+          cell.classList.add(`tech-${selectedTechnique}`, "tech-applied");
+          cell.setAttribute("title", selectedTechnique.replace(/([A-Z])/g, ' $1').toLowerCase());
         }
-        sequence.push(notesAtBeat.join(' '));
-    }
+      }
+    });
+  });
+}
 
-    alert("Playing tab:\n" + sequence.join('\n'));
+// Technique icon click handler
+techIcons.forEach((icon) => {
+  icon.addEventListener("click", () => {
+    if (icon.classList.contains("active")) {
+      icon.classList.remove("active");
+      selectedTechnique = null;
+    } else {
+      techIcons.forEach((i) => i.classList.remove("active"));
+      icon.classList.add("active");
+      selectedTechnique = icon.getAttribute("data-tech");
+    }
+  });
 });
 
-// Clear tab
-clearBtn.addEventListener('click', () => {
-    for (let stringName in tabData) {
-        tabData[stringName] = [];
-    }
-    updateTabDisplay();
-});
+// Initialize grid and listeners
+createTabGrid();
+setupCellListeners();
 
-// Initial display
-updateTabDisplay();
