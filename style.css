@@ -1,75 +1,36 @@
+/* Import Lobster for headings */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+/* Global body style */
 body {
-    background: #f3f4f6;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f8f8f8; /* soft background */
+    color: #333; /* dark gray text for good contrast */
     margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
+/* Headings with Lobster */
+h1, h2, h3 {
+    font-family: 'Lobster', cursive;
+    color: #222; /* slightly darker than body text */
+    margin-bottom: 0.5em;
+}
+
+/* Example container styling */
 .container {
-    background: white;
+    max-width: 900px;
+    margin: auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 700px;
 }
 
-h1 {
-    text-align: center;
-    font-size: 1.8rem;
+/* Links styling */
+a {
+    color: #0077cc;
+    text-decoration: none;
 }
-
-textarea {
-    width: 100%;
-    height: 150px;
-    font-family: monospace;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 5px 0;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-pre {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    white-space: pre-wrap;
-    font-family: monospace;
-}
-
-.chord-buttons button {
-    margin: 5px 5px 0 0;
-    background: #28a745;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-}
-
-.chord-buttons button:hover {
-    background: #1e7b31;
-}
-
-#validationMessage {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 10px;
+a:hover {
+    text-decoration: underline;
 }
 
