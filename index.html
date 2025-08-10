@@ -1,31 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guitar Tab Maker</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guitar Tab Maker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <header>
-        <h1>🎸 Guitar Tab Maker</h1>
-    </header>
+  <header>
+    <h1>🎸 Guitar Tab Maker</h1>
+  </header>
 
-    <main>
-        <textarea id="tabInput" placeholder="Write your guitar tab here..."></textarea>
-        
-        <div class="buttons">
-            <button id="saveTab">💾 Save</button>
-            <button id="loadTabs">📂 Load</button>
-            <button id="playTab">▶ Play</button>
-        </div>
+  <main class="container">
+    <div class="input-row">
+      <label for="stringSelect">String:</label>
+      <select id="stringSelect">
+        <option value="e">e (1st string)</option>
+        <option value="B">B (2nd string)</option>
+        <option value="G">G (3rd string)</option>
+        <option value="D">D (4th string)</option>
+        <option value="A">A (5th string)</option>
+        <option value="E">E (6th string)</option>
+      </select>
 
-        <section id="savedTabs">
-            <h2>Saved Tabs</h2>
-            <ul id="tabList"></ul>
-        </section>
-    </main>
+      <label for="fretInput">Fret:</label>
+      <input
+        id="fretInput"
+        type="number"
+        min="0"
+        max="24"
+        placeholder="0"
+        style="width: 60px"
+      />
 
-    <script src="script.js"></script>
+      <button id="addNote">Add Note</button>
+      <button id="playTab">Play Tab</button>
+      <button id="clearTab">Clear Tab</button>
+    </div>
+
+    <section id="tabDisplay" style="margin-top: 20px; font-family: monospace; white-space: pre;"></section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
