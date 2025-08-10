@@ -7,32 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>🎸 Guitar Tab Maker</h1>
-        <p>Create, edit, and format your guitar tabs easily.</p>
+    </header>
 
-        <!-- Tab Input Section -->
-        <textarea id="tabInput" placeholder="Type your tab here..."></textarea>
-        <button onclick="displayTab()">Display Tab</button>
-        <button onclick="downloadTab()">Download Tab</button>
-
-        <!-- Live Preview -->
-        <h2>Live Preview:</h2>
-        <pre id="tabPreview"></pre>
-
-        <!-- Chord Snippets -->
-        <h3>Quick Chords:</h3>
-        <div class="chord-buttons">
-            <button onclick="insertChord('e|--3--|\\nB|--3--|\\nG|--0--|\\nD|--0--|\\nA|--2--|\\nE|--3--|\\n')">G</button>
-            <button onclick="insertChord('e|--2--|\\nB|--3--|\\nG|--2--|\\nD|--0--|\\nA|-----|\\nE|-----|\\n')">D</button>
-            <button onclick="insertChord('e|--0--|\\nB|--1--|\\nG|--0--|\\nD|--2--|\\nA|--3--|\\nE|-----|\\n')">C</button>
+    <main>
+        <textarea id="tabInput" placeholder="Write your guitar tab here..."></textarea>
+        
+        <div class="buttons">
+            <button id="saveTab">💾 Save</button>
+            <button id="loadTabs">📂 Load</button>
+            <button id="playTab">▶ Play</button>
         </div>
 
-        <!-- Validation Alert -->
-        <p id="validationMessage"></p>
-    </div>
+        <section id="savedTabs">
+            <h2>Saved Tabs</h2>
+            <ul id="tabList"></ul>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
 </html>
-
