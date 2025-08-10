@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Guitar Tab Maker</title>
+  <title>Guitar Tab Grid Input</title>
   <link rel="stylesheet" href="style.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
@@ -12,39 +12,44 @@
 </head>
 <body>
   <header>
-    <h1>🎸 Guitar Tab Maker</h1>
+    <h1>🎸 Guitar Tab Grid Input</h1>
   </header>
 
   <main class="container">
-    <div class="input-row">
-      <label for="stringSelect">String:</label>
-      <select id="stringSelect">
-        <option value="e">e (1st string)</option>
-        <option value="B">B (2nd string)</option>
-        <option value="G">G (3rd string)</option>
-        <option value="D">D (4th string)</option>
-        <option value="A">A (5th string)</option>
-        <option value="E">E (6th string)</option>
-      </select>
-
-      <label for="fretInput">Fret:</label>
-      <input
-        id="fretInput"
-        type="number"
-        min="0"
-        max="24"
-        placeholder="0"
-        style="width: 60px"
-      />
-
-      <button id="addNote">Add Note</button>
-      <button id="playTab">Play Tab</button>
-      <button id="clearTab">Clear Tab</button>
+    <div id="tabGridContainer">
+      <div id="techniquesSidebar">
+        <div class="tech-icon" data-tech="palmMute" title="Palm Mute">🖐️</div>
+        <div class="tech-icon" data-tech="harmonic" title="Harmonic">✨</div>
+        <div class="tech-icon" data-tech="slide" title="Slide">➰</div>
+        <div class="tech-icon" data-tech="tap" title="Tap">👆</div>
+        <div class="tech-icon" data-tech="bend" title="Bend">🎵</div>
+        <div class="tech-icon" data-tech="bodyHit" title="Body Hit">🥁</div>
+      </div>
+      <table id="tabGrid" aria-label="Guitar tablature input grid">
+        <thead>
+          <tr>
+            <th></th>
+            <!-- 16 time positions -->
+            <th>1</th><th>2</th><th>3</th><th>4</th>
+            <th>5</th><th>6</th><th>7</th><th>8</th>
+            <th>9</th><th>10</th><th>11</th><th>12</th>
+            <th>13</th><th>14</th><th>15</th><th>16</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Strings in order E A D G B e -->
+          <tr data-string="E"><th>E</th></tr>
+          <tr data-string="A"><th>A</th></tr>
+          <tr data-string="D"><th>D</th></tr>
+          <tr data-string="G"><th>G</th></tr>
+          <tr data-string="B"><th>B</th></tr>
+          <tr data-string="e"><th>e</th></tr>
+        </tbody>
+      </table>
     </div>
-
-    <section id="tabDisplay" style="margin-top: 20px; font-family: monospace; white-space: pre;"></section>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
